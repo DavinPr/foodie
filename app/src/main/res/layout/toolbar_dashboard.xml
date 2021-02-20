@@ -21,7 +21,6 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Category"
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -29,9 +28,11 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <AutoCompleteTextView
+                android:id="@+id/menu_expand"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
+                android:enabled="false"
                 android:inputType="none" />
 
         </com.google.android.material.textfield.TextInputLayout>

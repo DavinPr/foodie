@@ -3,9 +3,8 @@ package com.app.core.data.source.remote.response
 import com.google.gson.annotations.SerializedName
 
 data class MealResponse(
-
 	@field:SerializedName("meals")
-	val meals: List<MealsItem?>? = null
+	val meals: List<MealsItem>? = null
 )
 
 data class MealsItem(

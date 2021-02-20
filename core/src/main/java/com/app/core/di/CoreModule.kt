@@ -1,6 +1,9 @@
 package com.app.core.di
 
+import com.app.core.data.MealRepository
+import com.app.core.data.source.remote.RemoteDataSource
 import com.app.core.data.source.remote.network.ApiService
+import com.app.core.domain.repository.IMealRepository
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -18,7 +21,7 @@ val networkModule = module {
     }
 
     single {
-        val hostname = "https://www.themealdb.com/api/json/v1/1"
+        val hostname = "https://www.themealdb.com/api/json/v1/1/"
         val retrofit = Retrofit.Builder()
             .baseUrl(hostname)
             .addConverterFactory(GsonConverterFactory.create())
@@ -26,4 +29,9 @@ val networkModule = module {
             .build()
         retrofit.create(ApiService::class.java)
     }
+}
+
+val repositoryModule = module {
+    single { RemoteDataSource(get()) }
+    single<IMealRepository> { MealRepository(get()) }
 }
