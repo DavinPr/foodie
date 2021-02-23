@@ -1,6 +1,7 @@
 package com.app.foodie
 
 import android.app.Application
+import com.app.core.di.databaseModule
 import com.app.core.di.networkModule
 import com.app.core.di.repositoryModule
 import com.app.foodie.di.useCaseModule
@@ -18,6 +19,7 @@ class MyApplication : Application() {
             androidLogger(Level.ERROR)
             androidContext(this@MyApplication)
             modules(
+                databaseModule,
                 networkModule,
                 repositoryModule,
                 useCaseModule,

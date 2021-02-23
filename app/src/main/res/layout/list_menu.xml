@@ -4,9 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:ellipsize="end"
-    android:padding="8dp"
+    android:textSize="12sp"
     android:maxLines="1"
-    android:textAppearance="?attr/textAppearanceSubtitle1"
     >
 
 </TextView>

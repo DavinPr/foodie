@@ -50,4 +50,5 @@ dependencies {
 
     //shimmer
     implementation "com.facebook.shimmer:shimmer:$shimmer_version"
+
 }

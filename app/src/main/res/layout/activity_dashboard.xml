@@ -23,17 +23,13 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <TextView
-        android:id="@+id/tv_test"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_categories"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="aaaa"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="8dp"
+        tools:listitem="@layout/categories_item"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
