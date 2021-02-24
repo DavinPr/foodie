@@ -7,25 +7,27 @@
 
 
     <ImageButton
-        android:id="@+id/btn_favorite"
+        android:id="@+id/about"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:background="@null"
         android:src="@drawable/ic_favorite"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="20dp" />
+        tools:layout_editor_absoluteY="20dp"
+        tools:ignore="MissingConstraints" />
 
     <ImageButton
-        android:id="@+id/btn_about"
+        android:id="@+id/btn_favorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:background="@null"
-        android:src="@drawable/ic_favorite_border"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_favorite"
-        app:layout_constraintEnd_toStartOf="@+id/btn_favorite"
-        app:layout_constraintTop_toTopOf="@+id/btn_favorite" />
+        android:src="@drawable/ic_favorite"
+        app:tint="@color/tomato_red"
+        app:layout_constraintBottom_toBottomOf="@+id/about"
+        app:layout_constraintEnd_toStartOf="@+id/about"
+        app:layout_constraintTop_toTopOf="@+id/about" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

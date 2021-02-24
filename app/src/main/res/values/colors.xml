@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="yellow">#FFD753</color>
     <color name="inactive_item">#E6E6E6</color>
+    <color name="tomato_red">#FF5050</color>
 </resources>

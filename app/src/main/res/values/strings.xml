@@ -2,4 +2,7 @@
     <string name="app_name">Foodie</string>
     <string name="favorite">Favorite</string>
     <string name="categories">Categories</string>
+    <string name="meals">Meals</string>
+    <string name="detail_desc">Category Description</string>
+    <string name="about">About</string>
 </resources>

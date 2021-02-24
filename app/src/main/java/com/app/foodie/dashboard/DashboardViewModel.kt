@@ -9,6 +9,7 @@ import com.app.core.domain.usecase.model.Category
 import com.app.core.domain.usecase.model.Meal
 
 class DashboardViewModel(private val useCase: MealUseCase) : ViewModel() {
+
     fun getAllMeals(category: String): LiveData<Resource<List<Meal>>> =
         useCase.getAllMeals(category).asLiveData()
 

@@ -25,12 +25,13 @@
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
         <TextView
-            style="@style/Theme.Foodie.cardtext.title"
+            style="@style/Theme.Foodie.text_14_medium"
             android:id="@+id/categories_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:gravity="center"
+            android:maxLines="1"
             android:text="@string/categories" />
 
         <ImageView
@@ -38,6 +39,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_arrow_dropdown"
+            app:tint="@color/white"
+            android:rotation="270"
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
             tools:ignore="ContentDescription"
