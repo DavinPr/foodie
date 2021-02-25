@@ -5,10 +5,8 @@
     <item
         android:id="@+id/menu_favorite"
         android:icon="@drawable/ic_favorite"
-        android:iconTint="@color/tomato_red"
         android:title="@string/favorite"
-        app:showAsAction="ifRoom"
-        tools:targetApi="o" />
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/menu_about"

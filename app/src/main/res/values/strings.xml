@@ -5,4 +5,7 @@
     <string name="meals">Meals</string>
     <string name="detail_desc">Category Description</string>
     <string name="about">About</string>
+    <string name="categories_thumb">categories_thumb</string>
+    <string name="categories_name">categories_name</string>
+    <string name="categories_desc">categories_desc</string>
 </resources>

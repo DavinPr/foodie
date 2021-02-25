@@ -10,7 +10,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:titleTextAppearance="@style/Theme.Foodie.text_18_semibold"
+        app:titleTextAppearance="@style/Theme.Foodie.text_20_semibold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,6 +30,7 @@
         android:layout_width="125dp"
         android:layout_height="80dp"
         android:layout_marginTop="24dp"
+        android:transitionName="@string/categories_thumb"
         app:layout_constraintStart_toStartOf="@+id/rv_categories"
         app:layout_constraintTop_toBottomOf="@+id/rv_categories"
         tools:ignore="ContentDescription"
@@ -42,6 +43,7 @@
         android:layout_height="wrap_content"
         android:text="@string/categories"
         android:gravity="center"
+        android:transitionName="@string/categories_name"
         app:layout_constraintEnd_toEndOf="@+id/category_thumb"
         app:layout_constraintStart_toStartOf="@+id/category_thumb"
         app:layout_constraintTop_toBottomOf="@+id/category_thumb" />
@@ -71,6 +73,7 @@
                 android:maxLines="4"
                 android:layout_marginTop="4dp"
                 android:layout_marginStart="4dp"
+                android:transitionName="@string/categories_desc"
                 app:layout_constraintBottom_toTopOf="@+id/icon_showmore"
                 app:layout_constraintEnd_toEndOf="@id/icon_showmore"
                 app:layout_constraintStart_toStartOf="parent"

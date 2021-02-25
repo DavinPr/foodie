@@ -10,11 +10,16 @@ import com.bumptech.glide.Glide
 class MealsListAdapter : RecyclerView.Adapter<MealsListAdapter.MealsViewHolder>() {
 
     private val listMeals = ArrayList<Meal>()
+    private var category = "Category"
 
     fun setData(list: List<Meal>) {
         listMeals.clear()
         listMeals.addAll(list)
         notifyDataSetChanged()
+    }
+
+    fun setCategory(category: String) {
+        this.category = category
     }
 
     override fun onCreateViewHolder(
@@ -39,6 +44,7 @@ class MealsListAdapter : RecyclerView.Adapter<MealsListAdapter.MealsViewHolder>(
             Glide.with(itemView.context)
                 .load(meal.thumb)
                 .into(binding.mealsThumb)
+            binding.mealsCategory.text = category
         }
     }
 }
