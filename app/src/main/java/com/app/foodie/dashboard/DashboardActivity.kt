@@ -34,7 +34,6 @@ class DashboardActivity : AppCompatActivity() {
         setContentView(view)
 
         setSupportActionBar(binding.toolbar)
-        supportActionBar?.title = "Foodie"
 
         val categoriesAdapter = CategoriesListAdapter()
         mealsAdapter = MealsListAdapter()
