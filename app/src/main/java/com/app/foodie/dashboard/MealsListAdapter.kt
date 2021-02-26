@@ -11,6 +11,7 @@ class MealsListAdapter : RecyclerView.Adapter<MealsListAdapter.MealsViewHolder>(
 
     private val listMeals = ArrayList<Meal>()
     private var category = "Category"
+    var onClickItem : ((String) -> Unit)? = null
 
     fun setData(list: List<Meal>) {
         listMeals.clear()
@@ -45,6 +46,12 @@ class MealsListAdapter : RecyclerView.Adapter<MealsListAdapter.MealsViewHolder>(
                 .load(meal.thumb)
                 .into(binding.mealsThumb)
             binding.mealsCategory.text = category
+        }
+
+        init {
+            itemView.setOnClickListener {
+                listMeals[adapterPosition].idMeal?.let { id -> onClickItem?.invoke(id) }
+            }
         }
     }
 }

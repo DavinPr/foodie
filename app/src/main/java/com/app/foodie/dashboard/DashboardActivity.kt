@@ -16,6 +16,7 @@ import com.app.core.domain.usecase.model.Category
 import com.app.foodie.R
 import com.app.foodie.dashboard.categoriesdesc.CategoriesDescActivity
 import com.app.foodie.databinding.ActivityDashboardBinding
+import com.app.foodie.detail.DetailActivity
 import com.bumptech.glide.Glide
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -55,7 +56,7 @@ class DashboardActivity : AppCompatActivity() {
                             this@DashboardActivity.category = this
 
                         }
-                    } else{
+                    } else {
                         loading.errorText.visibility = View.VISIBLE
                         loading.errorText.text = resources.getString(R.string.empty_text)
                     }
@@ -73,6 +74,12 @@ class DashboardActivity : AppCompatActivity() {
             setPrevMeal(item)
             item.category?.let { loadMeals(it) }
             this.category = item
+        }
+
+        mealsAdapter.onClickItem = { id ->
+            val intent = Intent(this, DetailActivity::class.java)
+            intent.putExtra(DetailActivity.mealId, id)
+            startActivity(intent)
         }
 
         binding.rvMeals.apply {
@@ -101,7 +108,8 @@ class DashboardActivity : AppCompatActivity() {
                 intent,
                 ActivityOptions.makeSceneTransitionAnimation(
                     this,
-                    binding.dashboardCategoryLayout.categoryThumb, resources.getString(R.string.categories_thumb)
+                    binding.dashboardCategoryLayout.categoryThumb,
+                    resources.getString(R.string.categories_thumb)
                 ).toBundle()
             )
         }
@@ -135,7 +143,7 @@ class DashboardActivity : AppCompatActivity() {
                     if (meals.data != null) {
                         mealsAdapter.setData(meals.data!!)
                         mealsAdapter.setCategory(category)
-                    } else{
+                    } else {
                         loading.errorText.visibility = View.VISIBLE
                         loading.errorText.text = resources.getString(R.string.empty_text)
                     }

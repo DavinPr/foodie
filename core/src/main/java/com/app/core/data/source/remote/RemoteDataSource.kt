@@ -65,6 +65,6 @@ class RemoteDataSource(private val apiService: ApiService) {
                 emit(ApiResponse.Error(ex.toString()))
                 ex.printStackTrace()
             }
-        }
+        }.flowOn(Dispatchers.IO)
     }
 }

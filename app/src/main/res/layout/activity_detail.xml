@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dp"
+    tools:context=".detail.DetailActivity">
+
+    <ImageView
+        android:id="@+id/detail_thumb"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="8dp"
+        />
+
+    <TextView
+        android:id="@+id/detail_video"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="videos"
+        />
+
+    <TextView
+        android:id="@+id/detail_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="category"
+        />
+
+    <TextView
+        android:id="@+id/detail_tags"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="tags"
+        />
+
+    <TextView
+        android:id="@+id/detail_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="area"
+        />
+
+    <TextView
+        android:id="@+id/detail_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="name"
+        />
+
+    <TextView
+        android:id="@+id/detail_instruction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="instruction"
+        />
+
+</LinearLayout>
