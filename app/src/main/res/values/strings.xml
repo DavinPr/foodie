@@ -8,4 +8,6 @@
     <string name="categories_thumb">categories_thumb</string>
     <string name="categories_name">categories_name</string>
     <string name="categories_desc">categories_desc</string>
+    <string name="error_text">Something went wrong</string>
+    <string name="empty_text">No data found</string>
 </resources>

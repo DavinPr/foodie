@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_categories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/categories_item" />
+
+    <ImageView
+        android:id="@+id/category_thumb"
+        android:layout_width="125dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="24dp"
+        android:transitionName="@string/categories_thumb"
+        app:layout_constraintStart_toStartOf="@+id/rv_categories"
+        app:layout_constraintTop_toBottomOf="@+id/rv_categories"
+        tools:ignore="ContentDescription"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <TextView
+        android:id="@+id/category_name"
+        style="@style/Theme.Foodie.text_18_medium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/categories"
+        android:transitionName="@string/categories_name"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/category_thumb"
+        app:layout_constraintStart_toStartOf="@+id/category_thumb"
+        app:layout_constraintTop_toBottomOf="@+id/category_thumb" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/categories_desc_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        app:cardElevation="8dp"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/category_name"
+        app:layout_constraintEnd_toEndOf="@+id/rv_categories"
+        app:layout_constraintStart_toEndOf="@+id/category_thumb"
+        app:layout_constraintTop_toTopOf="@+id/category_thumb">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/category_desc"
+                style="@style/Theme.Foodie.text_12_regular"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text="@string/detail_desc"
+                android:maxLines="3"
+                android:layout_marginTop="4dp"
+                android:layout_marginStart="4dp"
+                android:transitionName="@string/categories_desc"
+                app:layout_constraintBottom_toTopOf="@+id/icon_showmore"
+                app:layout_constraintEnd_toEndOf="@id/icon_showmore"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/icon_showmore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:rotation="270"
+                android:layout_margin="4dp"
+                android:src="@drawable/ic_arrow_dropdown"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:tint="@color/black"
+                tools:ignore="ContentDescription" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,7 +5,7 @@ import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.Menu
-import android.widget.Toast
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.BlendModeColorFilterCompat
@@ -39,10 +39,14 @@ class DashboardActivity : AppCompatActivity() {
         mealsAdapter = MealsListAdapter()
 
         viewModel.getAllCategories().observe(this) { category ->
+            val loading = binding.loadingCategory
             when (category) {
                 is Resource.Loading -> {
+                    loading.loadingAnimation.visibility = View.VISIBLE
                 }
                 is Resource.Success -> {
+                    loading.root.visibility = View.GONE
+                    loading.loadingAnimation.visibility = View.GONE
                     if (category.data != null) {
                         categoriesAdapter.setData(category.data!!)
                         category.data!!.first().apply {
@@ -51,10 +55,15 @@ class DashboardActivity : AppCompatActivity() {
                             this@DashboardActivity.category = this
 
                         }
+                    } else{
+                        loading.errorText.visibility = View.VISIBLE
+                        loading.errorText.text = resources.getString(R.string.empty_text)
                     }
                 }
                 is Resource.Error -> {
-                    Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
+                    loading.loadingAnimation.visibility = View.GONE
+                    loading.errorText.visibility = View.VISIBLE
+                    loading.errorText.text = resources.getString(R.string.error_text)
                 }
             }
         }
@@ -72,14 +81,14 @@ class DashboardActivity : AppCompatActivity() {
             adapter = mealsAdapter
         }
 
-        binding.rvCategories.apply {
+        binding.dashboardCategoryLayout.rvCategories.apply {
             layoutManager =
                 LinearLayoutManager(this@DashboardActivity, LinearLayoutManager.HORIZONTAL, false)
             hasFixedSize()
             adapter = categoriesAdapter
         }
 
-        binding.categoriesDescContainer.setOnClickListener {
+        binding.dashboardCategoryLayout.categoriesDescContainer.setOnClickListener {
             val intent = Intent(this, CategoriesDescActivity::class.java)
             category?.let {
                 intent.putExtra(CategoriesDescActivity.name, it.category)
@@ -92,7 +101,7 @@ class DashboardActivity : AppCompatActivity() {
                 intent,
                 ActivityOptions.makeSceneTransitionAnimation(
                     this,
-                    binding.categoryThumb, resources.getString(R.string.categories_thumb)
+                    binding.dashboardCategoryLayout.categoryThumb, resources.getString(R.string.categories_thumb)
                 ).toBundle()
             )
         }
@@ -115,16 +124,26 @@ class DashboardActivity : AppCompatActivity() {
 
     private fun loadMeals(category: String) {
         viewModel.getAllMeals(category).observe(this) { meals ->
+            val loading = binding.loadingMeals
             when (meals) {
                 is Resource.Loading -> {
+                    loading.loadingAnimation.visibility = View.VISIBLE
                 }
                 is Resource.Success -> {
+                    loading.root.visibility = View.GONE
+                    loading.loadingAnimation.visibility = View.GONE
                     if (meals.data != null) {
                         mealsAdapter.setData(meals.data!!)
                         mealsAdapter.setCategory(category)
+                    } else{
+                        loading.errorText.visibility = View.VISIBLE
+                        loading.errorText.text = resources.getString(R.string.empty_text)
                     }
                 }
                 is Resource.Error -> {
+                    loading.loadingAnimation.visibility = View.GONE
+                    loading.errorText.visibility = View.VISIBLE
+                    loading.errorText.text = resources.getString(R.string.error_text)
                 }
             }
         }
@@ -133,9 +152,9 @@ class DashboardActivity : AppCompatActivity() {
     private fun setPrevMeal(category: Category) {
         Glide.with(this)
             .load(category.thumb)
-            .into(binding.categoryThumb)
+            .into(binding.dashboardCategoryLayout.categoryThumb)
 
-        binding.categoryName.text = category.category
-        binding.categoryDesc.text = category.description
+        binding.dashboardCategoryLayout.categoryName.text = category.category
+        binding.dashboardCategoryLayout.categoryDesc.text = category.description
     }
 }
