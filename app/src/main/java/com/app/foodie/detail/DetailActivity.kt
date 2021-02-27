@@ -2,8 +2,11 @@ package com.app.foodie.detail
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import com.app.core.data.Resource
 import com.app.core.domain.usecase.model.Detail
+import com.app.foodie.R
 import com.app.foodie.databinding.ActivityDetailBinding
 import com.bumptech.glide.Glide
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -37,6 +40,10 @@ class DetailActivity : AppCompatActivity() {
                     is Resource.Error -> {}
                 }
             }
+        }
+
+        binding.btnFavorite.setOnClickListener {
+            binding.btnFavorite.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(this, R.drawable.ic_favorite), null, null, null)
         }
     }
 

@@ -2,10 +2,12 @@ package com.app.core.di
 
 import androidx.room.Room
 import com.app.core.data.MealRepository
+import com.app.core.data.source.local.LocalDataSource
 import com.app.core.data.source.local.room.MealDatabase
 import com.app.core.data.source.remote.RemoteDataSource
 import com.app.core.data.source.remote.network.ApiService
 import com.app.core.domain.repository.IMealRepository
+import com.app.core.utils.AppExecutors
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -47,6 +49,8 @@ val networkModule = module {
 }
 
 val repositoryModule = module {
+    factory { AppExecutors() }
+    single { LocalDataSource(get()) }
     single { RemoteDataSource(get()) }
-    single<IMealRepository> { MealRepository(get()) }
+    single<IMealRepository> { MealRepository(get(), get(), get()) }
 }

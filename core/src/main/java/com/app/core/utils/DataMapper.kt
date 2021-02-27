@@ -1,10 +1,12 @@
 package com.app.core.utils
 
+import com.app.core.data.source.local.entity.FavoriteEntity
 import com.app.core.data.source.remote.response.CategoriesItem
 import com.app.core.data.source.remote.response.MealsDetail
 import com.app.core.data.source.remote.response.MealsItem
 import com.app.core.domain.usecase.model.Category
 import com.app.core.domain.usecase.model.Detail
+import com.app.core.domain.usecase.model.Favorite
 import com.app.core.domain.usecase.model.Meal
 
 object DataMapper {
@@ -35,18 +37,48 @@ object DataMapper {
         return categories
     }
 
-    fun detailResponseToDomain(input: MealsDetail): Detail {
-        return input.let {
-            Detail(
+    fun detailResponseToDomain(input: MealsDetail): Detail = input.let {
+        Detail(
+            video = it.video,
+            category = it.category,
+            thumb = it.thumb,
+            tags = it.tags,
+            area = it.area,
+            idMeal = it.idMeal,
+            name = it.name,
+            instructions = it.instructions
+        )
+    }
+
+    fun favoriteEntityToDomain(input: List<FavoriteEntity>): List<Favorite> {
+        val favorites = ArrayList<Favorite>()
+        input.map {
+            val favorite = Favorite(
+                detailId = it.detailId,
+                idMeal = it.idMeal,
+                thumb = it.thumb,
+                name = it.name,
                 video = it.video,
                 category = it.category,
-                thumb = it.thumb,
                 tags = it.tags,
                 area = it.area,
-                idMeal = it.idMeal,
-                name = it.name,
                 instructions = it.instructions
             )
+            favorites.add(favorite)
         }
+        return favorites
     }
+
+    fun favoriteDomainToEntity(input: Favorite): FavoriteEntity =
+        FavoriteEntity(
+            detailId = input.detailId,
+            idMeal = input.idMeal,
+            thumb = input.thumb,
+            name = input.name,
+            video = input.video,
+            category = input.category,
+            tags = input.tags,
+            area = input.area,
+            instructions = input.instructions
+        )
 }

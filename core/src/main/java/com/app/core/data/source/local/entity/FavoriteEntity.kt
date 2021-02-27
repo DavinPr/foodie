@@ -5,12 +5,12 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "previewFavorite")
-data class PreviewFavorite(
+@Entity(tableName = "favorite")
+data class FavoriteEntity (
     @PrimaryKey(autoGenerate = true)
     @NonNull
-    @ColumnInfo(name = "previewId")
-    val previewId: Int = 0,
+    @ColumnInfo(name = "detailId")
+    val detailId: Int = 0,
 
     @ColumnInfo(name = "idMeal")
     val idMeal: String,
@@ -19,18 +19,7 @@ data class PreviewFavorite(
     val thumb: String? = null,
 
     @ColumnInfo(name = "name")
-    val name: String? = null
-)
-
-@Entity(tableName = "detailFavorite")
-data class DetailFavorite (
-    @PrimaryKey(autoGenerate = true)
-    @NonNull
-    @ColumnInfo(name = "detailId")
-    val detailId: Int = 0,
-
-    @ColumnInfo(name = "previewId")
-    val previewId: Int,
+    val name: String? = null,
 
     @ColumnInfo(name = "video")
     val video: String? = null,

@@ -16,6 +16,18 @@
         android:layout_marginBottom="8dp"
         />
 
+    <Button
+        android:id="@+id/btn_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/tomato_red"
+        android:drawableLeft="@drawable/ic_favorite_border"
+        android:drawableTint="@color/white"
+        android:drawablePadding="4dp"
+        android:text="@string/favorite"
+        android:textAllCaps="false"
+        />
+
     <TextView
         android:id="@+id/detail_video"
         android:layout_width="match_parent"
