@@ -26,6 +26,8 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val id = intent.getStringExtra(mealId)
+        var detailData = Detail()
+        var isFavorite = false
 
         if (id != null) {
             viewModel.getDetailMeal(id).observe(this){detail ->
@@ -35,12 +37,17 @@ class DetailActivity : AppCompatActivity() {
                         val data = detail.data
                         if (data != null){
                             setData(data)
+                            detailData = data
                         }
                     }
                     is Resource.Error -> {}
                 }
             }
+            viewModel.checkFavorited(id).observe(this){state ->
+                isFavorite = state
+            }
         }
+
 
         binding.btnFavorite.setOnClickListener {
             binding.btnFavorite.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(this, R.drawable.ic_favorite), null, null, null)

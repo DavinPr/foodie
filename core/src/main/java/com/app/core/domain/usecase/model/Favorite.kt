@@ -5,7 +5,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Favorite(
-    val detailId: Int,
     val idMeal: String,
     val thumb: String? = null,
     val name: String? = null,

@@ -54,7 +54,6 @@ object DataMapper {
         val favorites = ArrayList<Favorite>()
         input.map {
             val favorite = Favorite(
-                detailId = it.detailId,
                 idMeal = it.idMeal,
                 thumb = it.thumb,
                 name = it.name,
@@ -71,7 +70,6 @@ object DataMapper {
 
     fun favoriteDomainToEntity(input: Favorite): FavoriteEntity =
         FavoriteEntity(
-            detailId = input.detailId,
             idMeal = input.idMeal,
             thumb = input.thumb,
             name = input.name,
