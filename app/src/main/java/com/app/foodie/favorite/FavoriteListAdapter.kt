@@ -1,4 +1,4 @@
-package com.app.foodie.adapter
+package com.app.foodie.dashboard
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,7 @@ import com.app.core.domain.usecase.model.Meal
 import com.app.foodie.databinding.MealsItemBinding
 import com.bumptech.glide.Glide
 
-class SharedMealsListAdapter : RecyclerView.Adapter<SharedMealsListAdapter.MealsViewHolder>() {
+class MealsListAdapter : RecyclerView.Adapter<MealsListAdapter.MealsViewHolder>() {
 
     private val listMeals = ArrayList<Meal>()
     private var category = "Category"
