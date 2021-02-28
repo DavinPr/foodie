@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.app.core.data.Resource
 import com.app.core.domain.usecase.model.Detail
+import com.app.core.domain.usecase.model.Favorite
 import com.app.foodie.R
 import com.app.foodie.databinding.ActivityDetailBinding
 import com.bumptech.glide.Glide
@@ -13,47 +14,58 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class DetailActivity : AppCompatActivity() {
 
     companion object {
-        const val mealId = "meal_id"
+        const val id_key = "id_key"
+        const val favorite_key = "favorite_key"
+        const val ACTIVITY_CODE = "activity_code"
     }
 
     private lateinit var binding: ActivityDetailBinding
     private val viewModel: DetailViewModel by viewModel()
     private var detailData = Detail()
     private var isFavorite = false
+    private var favorite: Favorite? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val id = intent.getStringExtra(mealId)
+        val activityCode = intent.getIntExtra(ACTIVITY_CODE, 101)
 
 
-        if (id != null) {
-            viewModel.getDetailMeal(id).observe(this) { detail ->
-                when (detail) {
-                    is Resource.Loading -> {
-                    }
-                    is Resource.Success -> {
-                        val data = detail.data
-                        if (data != null) {
-                            setData(data)
-                            detailData = data
+        if (activityCode == 102) {
+            favorite = intent.getParcelableExtra(favorite_key)
+            isFavorite = true
+            checkFavorite(true)
+            setData(favorite = favorite)
+        } else {
+            val id = intent.getStringExtra(id_key)
+            if (id != null) {
+                viewModel.getDetailMeal(id).observe(this) { detail ->
+                    when (detail) {
+                        is Resource.Loading -> {
+                        }
+                        is Resource.Success -> {
+                            val data = detail.data
+                            if (data != null) {
+                                setData(data)
+                                detailData = data
+                            }
+                        }
+                        is Resource.Error -> {
                         }
                     }
-                    is Resource.Error -> {
-                    }
                 }
-            }
-            viewModel.checkFavorited(id).observe(this) { state ->
-                isFavorite = state
-                checkFavorite(state)
+                viewModel.checkFavorited(id).observe(this) { state ->
+                    isFavorite = state
+                    checkFavorite(state)
+                }
             }
         }
 
         binding.btnFavorite.setOnClickListener {
             checkFavorite(!isFavorite)
-            if (isFavorite){
+            if (isFavorite) {
                 viewModel.insertFavorite(detailData)
             } else {
                 viewModel.deleteFavorite(detailData)
@@ -61,28 +73,52 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun setData(detail: Detail) {
+    private fun setData(detail: Detail? = null, favorite: Favorite? = null) {
         binding.detailVideo.apply {
-            text = detail.video?.let { text.toString().append(it) }
+            text = if (detail != null) {
+                detail.video?.let { text.toString().append(it) }
+            } else {
+                favorite?.video?.let { text.toString().append(it) }
+            }
         }
         binding.detailName.apply {
-            text = detail.name?.let { text.toString().append(it) }
+            text = if (detail != null) {
+                detail.name?.let { text.toString().append(it) }
+            } else {
+                favorite?.name?.let { text.toString().append(it) }
+            }
         }
         binding.detailArea.apply {
-            text = detail.area?.let { text.toString().append(it) }
+            text = if (detail != null) {
+                detail.area?.let { text.toString().append(it) }
+            } else {
+                favorite?.area?.let { text.toString().append(it) }
+            }
         }
         binding.detailCategory.apply {
-            text = detail.category?.let { text.toString().append(it) }
+            text = if (detail != null) {
+                detail.category?.let { text.toString().append(it) }
+            } else {
+                favorite?.category?.let { text.toString().append(it) }
+            }
         }
         binding.detailInstruction.apply {
-            text = detail.instructions?.let { text.toString().append(it) }
+            text = if (detail != null) {
+                detail.instructions?.let { text.toString().append(it) }
+            } else {
+                favorite?.instructions?.let { text.toString().append(it) }
+            }
         }
         binding.detailTags.apply {
-            text = detail.tags?.let { text.toString().append(it) }
+            text = if (detail != null) {
+                detail.tags?.let { text.toString().append(it) }
+            } else {
+                favorite?.tags?.let { text.toString().append(it) }
+            }
         }
 
         Glide.with(this)
-            .load(detail.thumb)
+            .load(if (detail != null) detail.thumb else favorite?.thumb)
             .into(binding.detailThumb)
     }
 

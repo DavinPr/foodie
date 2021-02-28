@@ -1,6 +1,5 @@
 package com.app.core.domain.usecase
 
-import android.util.Log
 import com.app.core.data.Resource
 import com.app.core.domain.repository.IMealRepository
 import com.app.core.domain.usecase.model.Category
@@ -8,7 +7,6 @@ import com.app.core.domain.usecase.model.Detail
 import com.app.core.domain.usecase.model.Favorite
 import com.app.core.domain.usecase.model.Meal
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
 
 
 class MealInteractor(private val mealRepository: IMealRepository) : MealUseCase {
@@ -27,7 +25,7 @@ class MealInteractor(private val mealRepository: IMealRepository) : MealUseCase 
 
     override fun insertFavorite(favorite: Favorite) = mealRepository.insertFavorite(favorite)
 
-    override fun deleteFavorite(favorite: Favorite) = mealRepository.deleteFavorite(favorite)
+    override fun deleteFavorite(id: String) = mealRepository.deleteFavorite(id)
 
     override fun checkFavorited(id: String): Flow<Boolean> = mealRepository.checkFavorited(id)
 }

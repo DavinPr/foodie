@@ -80,7 +80,8 @@ class DashboardActivity : AppCompatActivity() {
 
         mealsAdapter.onClickItem = { id ->
             val intent = Intent(this, DetailActivity::class.java)
-            intent.putExtra(DetailActivity.mealId, id)
+            intent.putExtra(DetailActivity.id_key, id)
+            intent.putExtra(DetailActivity.ACTIVITY_CODE, 101)
             startActivity(intent)
         }
 

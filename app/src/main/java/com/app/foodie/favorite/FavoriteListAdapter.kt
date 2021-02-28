@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 class FavoriteListAdapter : RecyclerView.Adapter<FavoriteListAdapter.FavoritesViewHolder>() {
 
     private val listFavorites = ArrayList<Favorite>()
-    var onClickItem: ((String) -> Unit)? = null
+    var onClickItem: ((Favorite) -> Unit)? = null
 
     fun setData(list: List<Favorite>) {
         listFavorites.clear()
@@ -45,7 +45,7 @@ class FavoriteListAdapter : RecyclerView.Adapter<FavoriteListAdapter.FavoritesVi
 
         init {
             itemView.setOnClickListener {
-                onClickItem?.invoke(listFavorites[adapterPosition].idMeal)
+                onClickItem?.invoke(listFavorites[adapterPosition])
             }
         }
     }

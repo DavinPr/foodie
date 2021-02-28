@@ -10,8 +10,8 @@ class LocalDataSource(private val mealDao: MealDao) {
     fun insertFavorite(favoriteEntity: FavoriteEntity) =
         mealDao.insertFavorite(favoriteEntity)
 
-    fun deleteFavorite(favoriteEntity: FavoriteEntity) =
-        mealDao.deleteFavorite(favoriteEntity)
+    fun deleteFavorite(id: String) =
+        mealDao.deleteFavorite(id)
 
     fun checkFavorite(id: String): Flow<Boolean> = mealDao.isFavorited(id)
 }

@@ -18,7 +18,7 @@ interface IMealRepository {
 
     fun insertFavorite(favorite: Favorite)
 
-    fun deleteFavorite(favorite: Favorite)
+    fun deleteFavorite(id: String)
 
     fun checkFavorited(id: String): Flow<Boolean>
 }

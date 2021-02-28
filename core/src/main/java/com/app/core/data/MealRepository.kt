@@ -81,12 +81,10 @@ class MealRepository(
         }
     }
 
-    override fun deleteFavorite(favorite: Favorite) {
-        val data = DataMapper.favoriteDomainToEntity(favorite)
+    override fun deleteFavorite(id: String) =
         appExecutors.diskIO().execute {
-            localDataSource.deleteFavorite(data)
+            localDataSource.deleteFavorite(id)
         }
-    }
 
     override fun checkFavorited(id: String): Flow<Boolean> = localDataSource.checkFavorite(id)
 

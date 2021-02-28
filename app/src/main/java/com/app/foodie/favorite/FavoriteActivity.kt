@@ -1,10 +1,13 @@
 package com.app.foodie.favorite
 
+import android.app.ActivityOptions
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.core.data.Resource
 import com.app.foodie.databinding.ActivityFavoriteBinding
+import com.app.foodie.detail.DetailActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class FavoriteActivity : AppCompatActivity() {
@@ -31,6 +34,17 @@ class FavoriteActivity : AppCompatActivity() {
                 is Resource.Error -> {
                 }
             }
+        }
+
+        favoriteAdapter.onClickItem = { favorite ->
+            val intent = Intent(this, DetailActivity::class.java)
+            intent.putExtra(DetailActivity.favorite_key, favorite)
+            intent.putExtra(DetailActivity.ACTIVITY_CODE, 102)
+            startActivity(
+                intent, ActivityOptions.makeSceneTransitionAnimation(
+                    this
+                ).toBundle()
+            )
         }
 
         binding.rvFavorite.apply {
