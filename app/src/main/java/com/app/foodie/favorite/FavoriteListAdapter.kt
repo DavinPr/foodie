@@ -1,56 +1,51 @@
-package com.app.foodie.dashboard
+package com.app.foodie.favorite
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.app.core.domain.usecase.model.Meal
+import com.app.core.domain.usecase.model.Favorite
 import com.app.foodie.databinding.MealsItemBinding
 import com.bumptech.glide.Glide
 
-class MealsListAdapter : RecyclerView.Adapter<MealsListAdapter.MealsViewHolder>() {
+class FavoriteListAdapter : RecyclerView.Adapter<FavoriteListAdapter.FavoritesViewHolder>() {
 
-    private val listMeals = ArrayList<Meal>()
-    private var category = "Category"
+    private val listFavorites = ArrayList<Favorite>()
     var onClickItem: ((String) -> Unit)? = null
 
-    fun setData(list: List<Meal>) {
-        listMeals.clear()
-        listMeals.addAll(list)
+    fun setData(list: List<Favorite>) {
+        listFavorites.clear()
+        listFavorites.addAll(list)
         notifyDataSetChanged()
-    }
-
-    fun setCategory(category: String) {
-        this.category = category
     }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): MealsViewHolder =
-        MealsViewHolder(
+    ): FavoritesViewHolder =
+        FavoritesViewHolder(
             MealsItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
 
-    override fun onBindViewHolder(holder: MealsViewHolder, position: Int) {
-        val meal = listMeals[position]
+    override fun onBindViewHolder(holder: FavoritesViewHolder, position: Int) {
+        val meal = listFavorites[position]
         holder.bind(meal)
     }
 
-    override fun getItemCount(): Int = listMeals.size
+    override fun getItemCount(): Int = listFavorites.size
 
-    inner class MealsViewHolder(private val binding: MealsItemBinding) :
+    inner class FavoritesViewHolder(private val binding: MealsItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(meal: Meal) {
-            binding.mealsName.text = meal.name
+        fun bind(favorite: Favorite) {
+            binding.mealsName.text = favorite.name
             Glide.with(itemView.context)
-                .load(meal.thumb)
+                .load(favorite.thumb)
                 .into(binding.mealsThumb)
-            binding.mealsCategory.text = category
+            binding.mealsCategory.text = favorite.category
         }
 
         init {
             itemView.setOnClickListener {
-                listMeals[adapterPosition].idMeal?.let { id -> onClickItem?.invoke(id) }
+                onClickItem?.invoke(listFavorites[adapterPosition].idMeal)
             }
         }
     }

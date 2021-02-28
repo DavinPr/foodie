@@ -26,7 +26,7 @@ class MealRepository(
                         emit(Resource.Success(data))
                     }
                 }
-                is ApiResponse.Empty -> emit(Resource.Success<List<Meal>>(listOf()))
+                is ApiResponse.Empty -> emit(Resource.Success<List<Meal>>(emptyList()))
                 is ApiResponse.Error -> emit(Resource.Error<List<Meal>>(message = apiResponse.errorMessage))
             }
         }
@@ -40,7 +40,7 @@ class MealRepository(
                     emit(Resource.Success(data))
                 }
                 is ApiResponse.Empty -> {
-                    emit(Resource.Success<List<Category>>(listOf()))
+                    emit(Resource.Success<List<Category>>(emptyList()))
                 }
                 is ApiResponse.Error ->
                     emit(Resource.Error<List<Category>>(message = apiResponse.errorMessage))

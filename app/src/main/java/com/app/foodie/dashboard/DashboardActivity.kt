@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -17,6 +18,7 @@ import com.app.foodie.R
 import com.app.foodie.dashboard.categoriesdesc.CategoriesDescActivity
 import com.app.foodie.databinding.ActivityDashboardBinding
 import com.app.foodie.detail.DetailActivity
+import com.app.foodie.favorite.FavoriteActivity
 import com.bumptech.glide.Glide
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -118,7 +120,6 @@ class DashboardActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_dashboard, menu)
-
         if (menu != null) {
             val favorite: Drawable = menu.findItem(R.id.menu_favorite).icon
             favorite.mutate()
@@ -126,6 +127,16 @@ class DashboardActivity : AppCompatActivity() {
                 ContextCompat.getColor(this, R.color.tomato_red),
                 BlendModeCompat.SRC_ATOP
             )
+        }
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.menu_favorite -> {
+                val intent = Intent(this, FavoriteActivity::class.java)
+                startActivity(intent)
+            }
         }
         return true
     }

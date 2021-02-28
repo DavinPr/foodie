@@ -3,7 +3,6 @@ package com.app.foodie.detail
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import com.app.core.data.Resource
 import com.app.core.domain.usecase.model.Detail
 import com.app.foodie.R
@@ -17,8 +16,10 @@ class DetailActivity : AppCompatActivity() {
         const val mealId = "meal_id"
     }
 
-    private lateinit var binding : ActivityDetailBinding
-    private val viewModel : DetailViewModel by viewModel()
+    private lateinit var binding: ActivityDetailBinding
+    private val viewModel: DetailViewModel by viewModel()
+    private var detailData = Detail()
+    private var isFavorite = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,35 +27,41 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val id = intent.getStringExtra(mealId)
-        var detailData = Detail()
-        var isFavorite = false
+
 
         if (id != null) {
-            viewModel.getDetailMeal(id).observe(this){detail ->
-                when(detail){
-                    is Resource.Loading -> {}
+            viewModel.getDetailMeal(id).observe(this) { detail ->
+                when (detail) {
+                    is Resource.Loading -> {
+                    }
                     is Resource.Success -> {
                         val data = detail.data
-                        if (data != null){
+                        if (data != null) {
                             setData(data)
                             detailData = data
                         }
                     }
-                    is Resource.Error -> {}
+                    is Resource.Error -> {
+                    }
                 }
             }
-            viewModel.checkFavorited(id).observe(this){state ->
+            viewModel.checkFavorited(id).observe(this) { state ->
                 isFavorite = state
+                checkFavorite(state)
             }
         }
 
-
         binding.btnFavorite.setOnClickListener {
-            binding.btnFavorite.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(this, R.drawable.ic_favorite), null, null, null)
+            checkFavorite(!isFavorite)
+            if (isFavorite){
+                viewModel.insertFavorite(detailData)
+            } else {
+                viewModel.deleteFavorite(detailData)
+            }
         }
     }
 
-    private fun setData(detail : Detail){
+    private fun setData(detail: Detail) {
         binding.detailVideo.apply {
             text = detail.video?.let { text.toString().append(it) }
         }
@@ -79,5 +86,25 @@ class DetailActivity : AppCompatActivity() {
             .into(binding.detailThumb)
     }
 
-    private fun String.append(text : String) = StringBuilder(this).append(" : $text").toString()
+    private fun checkFavorite(state: Boolean) {
+        if (state) {
+            isFavorite = true
+            binding.btnFavorite.setCompoundDrawablesWithIntrinsicBounds(
+                ContextCompat.getDrawable(
+                    this,
+                    R.drawable.ic_favorite
+                ), null, null, null
+            )
+        } else {
+            isFavorite = false
+            binding.btnFavorite.setCompoundDrawablesWithIntrinsicBounds(
+                ContextCompat.getDrawable(
+                    this,
+                    R.drawable.ic_favorite_border
+                ), null, null, null
+            )
+        }
+    }
+
+    private fun String.append(text: String) = StringBuilder(this).append(" : $text").toString()
 }
