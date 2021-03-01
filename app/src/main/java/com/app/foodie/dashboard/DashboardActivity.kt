@@ -44,13 +44,10 @@ class DashboardActivity : AppCompatActivity() {
         viewModel.getAllCategories().observe(this) { category ->
             val loading = binding.loadingCategory
             when (category) {
-                is Resource.Loading -> {
-                    loading.loadingAnimation.visibility = View.VISIBLE
-                }
+                is Resource.Loading -> loading.loadingAnimation.visibility = View.VISIBLE
                 is Resource.Success -> {
-                    loading.root.visibility = View.GONE
-                    loading.loadingAnimation.visibility = View.GONE
                     if (category.data != null) {
+                    loading.root.visibility = View.GONE
                         categoriesAdapter.setData(category.data!!)
                         category.data!!.first().apply {
                             setPrevMeal(this)
@@ -59,6 +56,7 @@ class DashboardActivity : AppCompatActivity() {
 
                         }
                     } else {
+                        loading.loadingAnimation.visibility = View.GONE
                         loading.errorText.visibility = View.VISIBLE
                         loading.errorText.text = resources.getString(R.string.empty_text)
                     }
@@ -133,7 +131,7 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
+        when (item.itemId) {
             R.id.menu_favorite -> {
                 val intent = Intent(this, FavoriteActivity::class.java)
                 startActivity(intent)

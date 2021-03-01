@@ -12,7 +12,8 @@ class FavoriteListAdapter : RecyclerView.Adapter<FavoriteListAdapter.FavoritesVi
     private val listFavorites = ArrayList<Favorite>()
     var onClickItem: ((Favorite) -> Unit)? = null
 
-    fun setData(list: List<Favorite>) {
+    fun setData(list: List<Favorite>?) {
+        if (list == null) return
         listFavorites.clear()
         listFavorites.addAll(list)
         notifyDataSetChanged()

@@ -66,9 +66,13 @@ class DetailActivity : AppCompatActivity() {
         binding.btnFavorite.setOnClickListener {
             checkFavorite(!isFavorite)
             if (isFavorite) {
-                viewModel.insertFavorite(detailData)
+                if (activityCode == 102)
+                    favorite?.let { favorite -> viewModel.insertFavorite(favorite) }
+                else viewModel.insertFavorite(detailData)
             } else {
-                viewModel.deleteFavorite(detailData)
+                if (activityCode == 102)
+                    favorite?.let { favorite -> viewModel.deleteFavorite(favorite) }
+                else viewModel.deleteFavorite(detailData)
             }
         }
     }

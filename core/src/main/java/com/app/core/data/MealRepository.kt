@@ -81,6 +81,13 @@ class MealRepository(
         }
     }
 
+    override fun deleteFavorite(favorite: Favorite) {
+        val data = DataMapper.favoriteDomainToEntity(favorite)
+        appExecutors.diskIO().execute {
+            localDataSource.deleteFavorite(data)
+        }
+    }
+
     override fun deleteFavorite(id: String) =
         appExecutors.diskIO().execute {
             localDataSource.deleteFavorite(id)

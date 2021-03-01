@@ -26,7 +26,23 @@ class DetailViewModel(private val useCase: MealUseCase) : ViewModel() {
         useCase.insertFavorite(favorite)
     }
 
-    fun deleteFavorite(detail: Detail) = detail.idMeal?.let { useCase.deleteFavorite(it) }
+    fun insertFavorite(favorite: Favorite) = useCase.insertFavorite(favorite)
+
+    fun deleteFavorite(favorite: Favorite) = useCase.deleteFavorite(favorite)
+
+    fun deleteFavorite(detail: Detail) {
+        val favorite = Favorite(
+            idMeal = detail.idMeal ?: "",
+            thumb = detail.thumb,
+            name = detail.name,
+            video = detail.video,
+            category = detail.category,
+            tags = detail.tags,
+            area = detail.area,
+            instructions = detail.instructions
+        )
+        useCase.deleteFavorite(favorite)
+    }
 
     fun checkFavorited(id: String): LiveData<Boolean> = useCase.checkFavorited(id).asLiveData()
 

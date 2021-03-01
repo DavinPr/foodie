@@ -25,6 +25,8 @@ class MealInteractor(private val mealRepository: IMealRepository) : MealUseCase 
 
     override fun insertFavorite(favorite: Favorite) = mealRepository.insertFavorite(favorite)
 
+    override fun deleteFavorite(favorite: Favorite) = mealRepository.deleteFavorite(favorite)
+
     override fun deleteFavorite(id: String) = mealRepository.deleteFavorite(id)
 
     override fun checkFavorited(id: String): Flow<Boolean> = mealRepository.checkFavorited(id)
