@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Foodie">
-        <activity android:name=".about.AboutActivity"></activity>
+        <activity android:name=".about.AboutActivity"
+            android:theme="@style/Theme.Foodie.Fullscreen"
+            />
         <activity android:name=".favorite.FavoriteActivity" />
         <activity android:name=".detail.DetailActivity" />
         <activity android:name=".dashboard.categoriesdesc.CategoriesDescActivity" />
