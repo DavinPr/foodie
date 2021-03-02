@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.core.data.Resource
 import com.app.core.domain.usecase.model.Category
 import com.app.foodie.R
+import com.app.foodie.about.AboutActivity
 import com.app.foodie.dashboard.categoriesdesc.CategoriesDescActivity
 import com.app.foodie.databinding.ActivityDashboardBinding
 import com.app.foodie.detail.DetailActivity
@@ -47,7 +48,7 @@ class DashboardActivity : AppCompatActivity() {
                 is Resource.Loading -> loading.loadingAnimation.visibility = View.VISIBLE
                 is Resource.Success -> {
                     if (category.data != null) {
-                    loading.root.visibility = View.GONE
+                        loading.root.visibility = View.GONE
                         categoriesAdapter.setData(category.data!!)
                         category.data!!.first().apply {
                             setPrevMeal(this)
@@ -134,6 +135,10 @@ class DashboardActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.menu_favorite -> {
                 val intent = Intent(this, FavoriteActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.menu_about -> {
+                val intent = Intent(this, AboutActivity::class.java)
                 startActivity(intent)
             }
         }

@@ -12,8 +12,5 @@ class LocalDataSource(private val mealDao: MealDao) {
 
     fun deleteFavorite(favoriteEntity: FavoriteEntity) = mealDao.deleteFavorite(favoriteEntity)
 
-    fun deleteFavorite(id: String) =
-        mealDao.deleteFavorite(id)
-
     fun checkFavorite(id: String): Flow<Boolean> = mealDao.isFavorited(id)
 }

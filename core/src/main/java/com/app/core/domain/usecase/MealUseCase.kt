@@ -20,7 +20,5 @@ interface MealUseCase {
 
     fun deleteFavorite(favorite: Favorite)
 
-    fun deleteFavorite(id: String)
-
     fun checkFavorited(id: String) : Flow<Boolean>
 }

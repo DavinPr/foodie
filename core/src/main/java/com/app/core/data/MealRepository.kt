@@ -88,11 +88,6 @@ class MealRepository(
         }
     }
 
-    override fun deleteFavorite(id: String) =
-        appExecutors.diskIO().execute {
-            localDataSource.deleteFavorite(id)
-        }
-
     override fun checkFavorited(id: String): Flow<Boolean> = localDataSource.checkFavorite(id)
 
 }
