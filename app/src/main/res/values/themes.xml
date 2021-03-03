@@ -27,6 +27,12 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
+    <style name="Theme.Foodie.Transparent_status_bar" parent="Theme.Foodie">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+    </style>
+
     <style name="Theme.Foodie.text_12_regular">
         <item name="android:fontFamily">@font/poppins</item>
         <item name="android:textSize">12sp</item>

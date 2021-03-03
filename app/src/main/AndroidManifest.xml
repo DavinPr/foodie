@@ -17,7 +17,7 @@
             />
         <activity android:name=".favorite.FavoriteActivity" />
         <activity android:name=".detail.DetailActivity"
-            android:theme="@style/Theme.Foodie.Fullscreen"
+            android:theme="@style/Theme.Foodie.Transparent_status_bar"
             />
         <activity android:name=".dashboard.categoriesdesc.CategoriesDescActivity" />
         <activity android:name=".dashboard.DashboardActivity">
