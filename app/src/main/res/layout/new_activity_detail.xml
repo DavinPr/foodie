@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/detail_thumb"
+        android:layout_width="0dp"
+        android:layout_height="230dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <TextView
+        android:id="@+id/detail_name"
+        style="@style/Theme.Foodie.text_20_semibold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="@string/meals"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detail_thumb" />
+
+    <TextView
+        android:id="@+id/detail_category"
+        style="@style/Theme.Foodie.text_12_regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/categories"
+        android:textColor="@color/gray"
+        app:layout_constraintStart_toStartOf="@+id/detail_name"
+        app:layout_constraintTop_toBottomOf="@+id/detail_name" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:background="@color/gray"
+        app:layout_constraintBottom_toBottomOf="@id/detail_category"
+        app:layout_constraintStart_toEndOf="@+id/detail_category"
+        app:layout_constraintTop_toTopOf="@+id/detail_category" />
+
+    <TextView
+        android:id="@+id/detail_area"
+        style="@style/Theme.Foodie.text_12_regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/my_location"
+        android:textColor="@color/gray"
+        app:layout_constraintBottom_toBottomOf="@+id/detail_category"
+        app:layout_constraintStart_toEndOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/detail_category" />
+
+    <TextView
+        android:id="@+id/detail_tags"
+        style="@style/Theme.Foodie.text_14_regular"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/tags"
+        app:layout_constraintEnd_toEndOf="@+id/detail_name"
+        app:layout_constraintStart_toStartOf="@+id/detail_category"
+        app:layout_constraintTop_toBottomOf="@+id/detail_area" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="0dp"
+        android:layout_height="4dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/inactive_item"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detail_tags" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_video"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="@drawable/button_background"
+        android:drawableStart="@drawable/ic_play"
+        android:letterSpacing=".12"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text="Youtube"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/view4"
+        app:layout_constraintEnd_toStartOf="@+id/view3"
+        app:layout_constraintStart_toStartOf="@+id/view2"
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="1dp"
+        android:layout_height="70dp"
+        android:background="@color/inactive_item"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+    <Button
+        android:id="@+id/btn_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="@drawable/button_background"
+        android:drawableStart="@drawable/ic_favorite_border"
+        android:letterSpacing=".12"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text="@string/favorite"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/view4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view3"
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+    <View
+        android:id="@+id/view4"
+        android:layout_width="0dp"
+        android:layout_height="4dp"
+        android:background="@color/inactive_item"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view3" />
+
+    <TextView
+        android:id="@+id/detail_instruction"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:ellipsize="end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/detail_tags"
+        app:layout_constraintStart_toStartOf="@+id/detail_tags"
+        app:layout_constraintTop_toBottomOf="@+id/view4" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

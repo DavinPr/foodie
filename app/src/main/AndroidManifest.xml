@@ -16,7 +16,9 @@
             android:theme="@style/Theme.Foodie.Fullscreen"
             />
         <activity android:name=".favorite.FavoriteActivity" />
-        <activity android:name=".detail.DetailActivity" />
+        <activity android:name=".detail.DetailActivity"
+            android:theme="@style/Theme.Foodie.Fullscreen"
+            />
         <activity android:name=".dashboard.categoriesdesc.CategoriesDescActivity" />
         <activity android:name=".dashboard.DashboardActivity">
             <intent-filter>

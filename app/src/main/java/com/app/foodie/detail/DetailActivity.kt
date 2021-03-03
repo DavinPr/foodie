@@ -8,6 +8,7 @@ import com.app.core.domain.usecase.model.Detail
 import com.app.core.domain.usecase.model.Favorite
 import com.app.foodie.R
 import com.app.foodie.databinding.ActivityDetailBinding
+import com.app.foodie.databinding.NewActivityDetailBinding
 import com.bumptech.glide.Glide
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -78,40 +79,25 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun setData(detail: Detail? = null, favorite: Favorite? = null) {
-        binding.detailVideo.apply {
-            text = if (detail != null) {
-                detail.video?.let { text.toString().append(it) }
-            } else {
-                favorite?.video?.let { text.toString().append(it) }
-            }
-        }
+//        binding.detailVideo.apply {
+//            text = if (detail != null) {
+//                detail.video?.let { text.toString().append(it) }
+//            } else {
+//                favorite?.video?.let { text.toString().append(it) }
+//            }
+//        }
         binding.detailName.apply {
-            text = if (detail != null) {
-                detail.name?.let { text.toString().append(it) }
-            } else {
-                favorite?.name?.let { text.toString().append(it) }
-            }
+            text = if (detail != null) detail.name else favorite?.name
         }
+
         binding.detailArea.apply {
-            text = if (detail != null) {
-                detail.area?.let { text.toString().append(it) }
-            } else {
-                favorite?.area?.let { text.toString().append(it) }
-            }
+            text = if (detail != null) detail.area else favorite?.area
         }
         binding.detailCategory.apply {
-            text = if (detail != null) {
-                detail.category?.let { text.toString().append(it) }
-            } else {
-                favorite?.category?.let { text.toString().append(it) }
-            }
+            text = if (detail != null) detail.category else favorite?.category
         }
         binding.detailInstruction.apply {
-            text = if (detail != null) {
-                detail.instructions?.let { text.toString().append(it) }
-            } else {
-                favorite?.instructions?.let { text.toString().append(it) }
-            }
+            text = if (detail != null) detail.instructions else favorite?.instructions
         }
         binding.detailTags.apply {
             text = if (detail != null) {
