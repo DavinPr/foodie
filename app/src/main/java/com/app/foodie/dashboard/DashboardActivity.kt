@@ -31,7 +31,6 @@ class DashboardActivity : AppCompatActivity() {
     private lateinit var mealsAdapter: MealsListAdapter
     private var category: Category? = null
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDashboardBinding.inflate(layoutInflater)
@@ -82,7 +81,10 @@ class DashboardActivity : AppCompatActivity() {
             val intent = Intent(this, DetailActivity::class.java)
             intent.putExtra(DetailActivity.id_key, id)
             intent.putExtra(DetailActivity.ACTIVITY_CODE, 101)
-            startActivity(intent)
+            startActivity(
+                intent,
+                ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle()
+            )
         }
 
         binding.rvMeals.apply {

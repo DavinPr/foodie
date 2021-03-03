@@ -3,10 +3,8 @@ package com.app.foodie.customview
 import android.app.Activity
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.WindowInsets
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.size
 
 
 class CustomToolbar : Toolbar {
@@ -18,14 +16,14 @@ class CustomToolbar : Toolbar {
     constructor(context: Context) : super(context) {
         init()
         postDelayed({
-            changePadding(heightSize)
+            applyHeight(heightSize)
         }, 0)
     }
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         init()
         postDelayed({
-            changePadding(heightSize)
+            applyHeight(heightSize)
         }, 0)
     }
 
@@ -36,7 +34,7 @@ class CustomToolbar : Toolbar {
     ) {
         init()
         postDelayed({
-            changePadding(heightSize)
+            applyHeight(heightSize)
         }, 0)
     }
 
@@ -61,9 +59,10 @@ class CustomToolbar : Toolbar {
         }
     }
 
-    private fun changePadding(height: Int) {
+    private fun applyHeight(height: Int) {
         val lp = this.layoutParams
         lp.height = height + this.height
         this.layoutParams = lp
+        this.setPadding(0, height, 0, 0)
     }
 }

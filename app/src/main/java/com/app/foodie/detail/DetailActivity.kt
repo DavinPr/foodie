@@ -5,7 +5,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import com.app.core.data.Resource
 import com.app.core.domain.usecase.model.Detail
 import com.app.core.domain.usecase.model.Favorite
@@ -35,7 +34,6 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val activityCode = intent.getIntExtra(ACTIVITY_CODE, 101)
-
 
         if (activityCode == 102) {
             favorite = intent.getParcelableExtra(favorite_key)
@@ -86,59 +84,45 @@ class DetailActivity : AppCompatActivity() {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(video))
             startActivity(intent)
         }
+
+        binding.toolbar.setNavigationOnClickListener {
+            finish()
+        }
     }
 
     private fun setData(detail: Detail? = null, favorite: Favorite? = null) {
-        video = if (detail != null) {
-            detail.video
-        } else {
-            favorite?.video
-        }
+        video = detail?.video ?: favorite?.video
+
         binding.detailName.apply {
-            text = if (detail != null) detail.name else favorite?.name
+            val newText = "$text : ${detail?.name ?: favorite?.name}"
+            text = newText
         }
 
         binding.detailArea.apply {
-            text = if (detail != null) detail.area else favorite?.area
+            text = detail?.area ?: favorite?.area
         }
         binding.detailCategory.apply {
-            text = if (detail != null) detail.category else favorite?.category
+            text = detail?.category ?: favorite?.category
         }
         binding.detailInstruction.apply {
-            text = if (detail != null) detail.instructions else favorite?.instructions
+            text = detail?.instructions ?: favorite?.instructions
         }
         binding.detailTags.apply {
-            text = if (detail != null) {
-                detail.tags?.let { text.toString().append(it) }
-            } else {
-                favorite?.tags?.let { text.toString().append(it) }
-            }
+            text = detail?.tags ?: favorite?.tags
         }
 
         Glide.with(this)
-            .load(if (detail != null) detail.thumb else favorite?.thumb)
+            .load(detail?.thumb ?: favorite?.thumb)
             .into(binding.detailThumb)
     }
 
     private fun checkFavorite(state: Boolean) {
         if (state) {
             isFavorite = true
-            binding.btnFavorite.setCompoundDrawablesWithIntrinsicBounds(
-                ContextCompat.getDrawable(
-                    this,
-                    R.drawable.ic_favorite
-                ), null, null, null
-            )
+            binding.btnFavorite.setIconResource(R.drawable.ic_favorite)
         } else {
             isFavorite = false
-            binding.btnFavorite.setCompoundDrawablesWithIntrinsicBounds(
-                ContextCompat.getDrawable(
-                    this,
-                    R.drawable.ic_favorite_border
-                ), null, null, null
-            )
+            binding.btnFavorite.setIconResource(R.drawable.ic_favorite_border)
         }
     }
-
-    private fun String.append(text: String) = StringBuilder(this).append(" : $text").toString()
 }

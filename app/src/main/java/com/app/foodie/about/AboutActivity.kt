@@ -30,17 +30,21 @@ class AboutActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(p0: View?) {
-        when(p0?.id){
+        when (p0?.id) {
             binding.btnGithub.id -> {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/DavinPr"))
                 startActivity(intent)
             }
             binding.btnInstagram.id -> {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/aditya_davin/"))
+                val intent =
+                    Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/aditya_davin/"))
                 startActivity(intent)
             }
             binding.btnLinkedin.id -> {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.linkedin.com/in/aditya-davin-pradana-148453197/"))
+                val intent = Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("https://www.linkedin.com/in/aditya-davin-pradana-148453197/")
+                )
                 startActivity(intent)
             }
         }
