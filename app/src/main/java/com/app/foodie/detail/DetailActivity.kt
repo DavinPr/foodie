@@ -3,6 +3,7 @@ package com.app.foodie.detail
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.app.core.data.Resource
@@ -44,10 +45,11 @@ class DetailActivity : AppCompatActivity() {
             val id = intent.getStringExtra(id_key)
             if (id != null) {
                 viewModel.getDetailMeal(id).observe(this) { detail ->
+                    val loading = binding.detailLoading
                     when (detail) {
-                        is Resource.Loading -> {
-                        }
+                        is Resource.Loading -> loading.root.visibility = View.VISIBLE
                         is Resource.Success -> {
+                            loading.root.visibility = View.GONE
                             val data = detail.data
                             if (data != null) {
                                 setData(data)
@@ -55,6 +57,10 @@ class DetailActivity : AppCompatActivity() {
                             }
                         }
                         is Resource.Error -> {
+                            loading.root.visibility = View.GONE
+                            loading.loadingAnimation.visibility = View.GONE
+                            loading.errorText.visibility = View.VISIBLE
+                            loading.errorText.text = resources.getString(R.string.error_text)
                         }
                     }
                 }
@@ -94,7 +100,7 @@ class DetailActivity : AppCompatActivity() {
         video = detail?.video ?: favorite?.video
 
         binding.detailName.apply {
-            val newText = "$text : ${detail?.name ?: favorite?.name}"
+            val newText = "Tags : ${detail?.name ?: favorite?.name}"
             text = newText
         }
 

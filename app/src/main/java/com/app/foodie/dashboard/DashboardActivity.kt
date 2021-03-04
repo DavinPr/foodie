@@ -8,7 +8,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
@@ -81,10 +80,7 @@ class DashboardActivity : AppCompatActivity() {
             val intent = Intent(this, DetailActivity::class.java)
             intent.putExtra(DetailActivity.id_key, id)
             intent.putExtra(DetailActivity.ACTIVITY_CODE, 101)
-            startActivity(
-                intent,
-                ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle()
-            )
+            startActivity(intent)
         }
 
         binding.rvMeals.apply {
