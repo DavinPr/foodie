@@ -12,21 +12,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Foodie">
-        <activity android:name=".about.AboutActivity"
-            android:theme="@style/Theme.Foodie.Fullscreen"
-            />
-        <activity android:name=".favorite.FavoriteActivity" />
-        <activity android:name=".detail.DetailActivity"
-            android:theme="@style/Theme.Foodie.Transparent_status_bar"
-            />
-        <activity android:name=".dashboard.categoriesdesc.CategoriesDescActivity" />
-        <activity android:name=".dashboard.DashboardActivity">
+        <activity
+            android:name=".SplashScreenActivity"
+            android:noHistory="true"
+            android:theme="@style/Theme.Foodie.Transparent_status_bar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".about.AboutActivity"
+            android:theme="@style/Theme.Foodie.Transparent_status_bar" />
+        <activity android:name=".favorite.FavoriteActivity" />
+        <activity
+            android:name=".detail.DetailActivity"
+            android:theme="@style/Theme.Foodie.Transparent_status_bar" />
+        <activity android:name=".dashboard.categoriesdesc.CategoriesDescActivity" />
+        <activity android:name=".dashboard.DashboardActivity" />
     </application>
-
 </manifest>
