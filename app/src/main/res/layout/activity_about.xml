@@ -17,6 +17,7 @@
         tools:ignore="ContentDescription" />
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/card_container"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -86,7 +87,7 @@
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:background="@drawable/ic_instagram"
-                    />
+                    tools:ignore="ContentDescription" />
 
                 <ImageButton
                     android:id="@+id/btn_github"
@@ -95,14 +96,14 @@
                     android:background="@drawable/ic_github"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
-                    />
+                    tools:ignore="ContentDescription" />
 
                 <ImageButton
                     android:id="@+id/btn_linkedin"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:background="@drawable/ic_linkedin"
-                    />
+                    tools:ignore="ContentDescription" />
 
             </LinearLayout>
 

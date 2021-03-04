@@ -1,5 +1,6 @@
 package com.app.foodie.about
 
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.graphics.ColorMatrix
 import android.graphics.ColorMatrixColorFilter
@@ -23,6 +24,13 @@ class AboutActivity : AppCompatActivity(), View.OnClickListener {
         val matrix = ColorMatrix()
         matrix.setSaturation(0f)
         binding.aboutProfile.colorFilter = ColorMatrixColorFilter(matrix)
+
+        binding.cardContainer.apply {
+            ObjectAnimator.ofFloat(this, "translationY", 400f, -50f,  0f).apply {
+                duration = 1000
+                start()
+            }
+        }
 
         binding.btnGithub.setOnClickListener(this)
         binding.btnInstagram.setOnClickListener(this)
